@@ -35,6 +35,118 @@
                 <p>تعلم البرمجة التفاعلية</p>
                 <div class="difficulty">متقدم</div>
             </div>
+
+            <div class="language-card" onclick="startGame('python')">
+                <div class="card-icon">🐍</div>
+                <h3>Python</h3>
+                <p>تعلم البرمجة الأساسية</p>
+                <div class="difficulty">سهل</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('php')">
+                <div class="card-icon">🐘</div>
+                <h3>PHP</h3>
+                <p>تعلم تطوير الويب الخلفي</p>
+                <div class="difficulty">متوسط</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('sql')">
+                <div class="card-icon">📊</div>
+                <h3>SQL</h3>
+                <p>تعلم قواعد البيانات</p>
+                <div class="difficulty">متوسط</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('react')">
+                <div class="card-icon">⚛️</div>
+                <h3>React</h3>
+                <p>تعلم إطار العمل الحديث</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('cpp')">
+                <div class="card-icon">⚙️</div>
+                <h3>C++</h3>
+                <p>تعلم البرمجة المتقدمة</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('java')">
+                <div class="card-icon">☕</div>
+                <h3>Java</h3>
+                <p>تعلم البرمجة الموجهة للكائنات</p>
+                <div class="difficulty">متوسط</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('typescript')">
+                <div class="card-icon">📘</div>
+                <h3>TypeScript</h3>
+                <p>تعلم JavaScript المحسن</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('nodejs')">
+                <div class="card-icon">🟢</div>
+                <h3>Node.js</h3>
+                <p>تعلم تطوير الخادم</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('git')">
+                <div class="card-icon">📝</div>
+                <h3>Git</h3>
+                <p>تعلم إدارة الإصدارات</p>
+                <div class="difficulty">متوسط</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('dart')">
+                <div class="card-icon">🎯</div>
+                <h3>Dart</h3>
+                <p>تعلم لغة Flutter</p>
+                <div class="difficulty">متوسط</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('flutter')">
+                <div class="card-icon">🦋</div>
+                <h3>Flutter</h3>
+                <p>تعلم تطوير التطبيقات</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('vue')">
+                <div class="card-icon">💚</div>
+                <h3>Vue.js</h3>
+                <p>تعلم إطار العمل التفاعلي</p>
+                <div class="difficulty">متوسط</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('angular')">
+                <div class="card-icon">🔴</div>
+                <h3>Angular</h3>
+                <p>تعلم إطار العمل الشامل</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('laravel')">
+                <div class="card-icon">🔥</div>
+                <h3>Laravel</h3>
+                <p>تعلم إطار العمل PHP</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="language-card" onclick="startGame('django')">
+                <div class="card-icon">🟢</div>
+                <h3>Django</h3>
+                <p>تعلم إطار العمل Python</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+
+            <div class="achievements-card" onclick="showAchievements()">
+                <div class="card-icon">🏆</div>
+                <h3>الإنجازات</h3>
+                <p>شاهد شاراتك وإنجازاتك</p>
+                <div class="achievements-count" id="achievementsCount">0/50</div>
+            </div>
         </div>
 
         <div class="game-area" id="gameArea" style="display: none;">
@@ -74,6 +186,16 @@
             </div>
             <div class="result-buttons">
                 <button class="btn btn-primary" onclick="playAgain()">العب مرة أخرى</button>
+                <button class="btn btn-secondary" onclick="backToMenu()">العودة للقائمة</button>
+            </div>
+        </div>
+
+        <div class="achievements-screen" id="achievementsScreen" style="display: none;">
+            <h2>🏆 الإنجازات والشارات</h2>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- الإنجازات ستظهر هنا -->
+            </div>
+            <div class="achievements-controls">
                 <button class="btn btn-secondary" onclick="backToMenu()">العودة للقائمة</button>
             </div>
         </div>
