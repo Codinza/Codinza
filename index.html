@@ -2,234 +2,100 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1e3a8a">
-    <title>Codinza - تعلم البرمجة بطريقة تفاعلية</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- حماية من النسخ -->
-    <script>
-        // منع النقر بالزر الأيمن
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            showProtectionMessage();
-        });
-        
-        // منع اختيار النص
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-        
-        // منع السحب
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-        });
-        
-        // منع F12 و Ctrl+Shift+I و Ctrl+U
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-                (e.ctrlKey && e.key === 'u') ||
-                (e.ctrlKey && e.key === 's')) {
-                e.preventDefault();
-                showProtectionMessage();
-            }
-        });
-        
-        // منع عرض الكود المصدري
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'u') {
-                e.preventDefault();
-                showProtectionMessage();
-            }
-        });
-        
-        function showProtectionMessage() {
-            alert('⚠️ هذا المحتوى محمي من النسخ والسرقة\n\n© Codinza - جميع الحقوق محفوظة');
-        }
-        
-        // منع فتح وحدة تحكم المطور
-        setInterval(function() {
-            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-                document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-size: 24px; color: red;">⚠️ تم اكتشاف محاولة فتح وحدة تحكم المطور<br><br>هذا المحتوى محمي من النسخ والسرقة<br><br>© Codinza - جميع الحقوق محفوظة</div>';
-            }
-        }, 1000);
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codinza</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="game-container">
+    <div class="container">
         <header>
-            <div class="header-content">
-                <div class="title-section">
-                    <div class="logo-container">
-                        <i class="fas fa-code title-icon"></i>
-                        <h1 class="brand-name">Codinza</h1>
-                        <div class="brand-subtitle">تعلم البرمجة بطريقة تفاعلية</div>
-                    </div>
-                    <p class="subtitle">اختر اللغة التي تريد تعلمها</p>
-                </div>
-                <div class="floating-elements">
-                    <div class="floating-icon">💻</div>
-                    <div class="floating-icon">🚀</div>
-                    <div class="floating-icon">⚡</div>
-                </div>
-            </div>
+            <h1><span class="codinza-title">Codinza</span></h1>
+            <p>اختر اللغة التي تريد تعلمها</p>
         </header>
 
-        <main>
-            <div class="language-selection">
-                <div class="language-card" data-language="html">
-                    <div class="card-header">
-                        <div class="language-icon">🌐</div>
-                        <div class="difficulty-badge">سهل</div>
-                    </div>
-                    <h2>HTML</h2>
-                    <p>تعلم بناء هيكل صفحات الويب</p>
-                    <div class="features">
-                        <span class="feature"><i class="fas fa-check"></i> 10 مستويات</span>
-                        <span class="feature"><i class="fas fa-star"></i> تفاعلي</span>
-                        <span class="feature"><i class="fas fa-play"></i> عملي</span>
-                    </div>
-                    <div class="progress-info">
-                        <span class="progress-text">0/10 مستويات مكتملة</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-
-                <div class="language-card" data-language="css">
-                    <div class="card-header">
-                        <div class="language-icon">🎨</div>
-                        <div class="difficulty-badge">متوسط</div>
-                    </div>
-                    <h2>CSS</h2>
-                    <p>تعلم تنسيق وتصميم صفحات الويب</p>
-                    <div class="features">
-                        <span class="feature"><i class="fas fa-check"></i> 10 مستويات</span>
-                        <span class="feature"><i class="fas fa-palette"></i> إبداعي</span>
-                        <span class="feature"><i class="fas fa-eye"></i> مرئي</span>
-                    </div>
-                    <div class="progress-info">
-                        <span class="progress-text">0/10 مستويات مكتملة</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-
-                <div class="language-card" data-language="javascript">
-                    <div class="card-header">
-                        <div class="language-icon">⚡</div>
-                        <div class="difficulty-badge">متقدم</div>
-                    </div>
-                    <h2>JavaScript</h2>
-                    <p>تعلم البرمجة التفاعلية للويب</p>
-                    <div class="features">
-                        <span class="feature"><i class="fas fa-check"></i> 10 مستويات</span>
-                        <span class="feature"><i class="fas fa-brain"></i> منطقي</span>
-                        <span class="feature"><i class="fas fa-magic"></i> ديناميكي</span>
-                    </div>
-                    <div class="progress-info">
-                        <span class="progress-text">0/10 مستويات مكتملة</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
+        <div class="game-menu">
+            <div class="language-card" onclick="startGame('html')">
+                <div class="card-icon">🌐</div>
+                <h3>HTML</h3>
+                <p>تعلم بناء هيكل المواقع</p>
+                <div class="difficulty">سهل</div>
             </div>
-        </main>
 
-        <footer>
-            <div class="footer-content">
-                <p><i class="fas fa-heart"></i> تم تطويره بواسطة Codinza</p>
-                <div class="social-links">
-                    <a href="https://wa.me/201104378091" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/share/15dFQrfgop/" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/ana.aimen.7?igsh=MXB2bG5xaDAwNGx6aQ==" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
+            <div class="language-card" onclick="startGame('css')">
+                <div class="card-icon">🎨</div>
+                <h3>CSS</h3>
+                <p>تعلم تنسيق وتصميم المواقع</p>
+                <div class="difficulty">متوسط</div>
             </div>
-        </footer>
-    </div>
 
-    <!-- صفحة اللعبة -->
-    <div class="game-page" style="display: none;">
-        <header>
+            <div class="language-card" onclick="startGame('javascript')">
+                <div class="card-icon">⚡</div>
+                <h3>JavaScript</h3>
+                <p>تعلم البرمجة التفاعلية</p>
+                <div class="difficulty">متقدم</div>
+            </div>
+        </div>
+
+        <div class="game-area" id="gameArea" style="display: none;">
             <div class="game-header">
-                <div class="game-title">
-                    <h1 id="language-title">تعلم البرمجة</h1>
-                    <div class="brand-logo">Codinza</div>
-                </div>
-                <div class="game-stats">
-            <div class="progress">
-                <span class="level">مستوى 1</span>
-                <div class="stars">
-                    <span class="star">⭐</span>
-                    <span class="star">⭐</span>
-                    <span class="star">⭐</span>
-                        </div>
-                    </div>
-                    <button id="back-to-menu" class="menu-button">
-                        <i class="fas fa-home"></i> العودة للقائمة الرئيسية
-                    </button>
+                <h2 id="gameTitle">تعلم HTML</h2>
+                <div class="score-board">
+                    <span>النقاط: <span id="score">0</span></span>
+                    <span>المستوى: <span id="level">1</span></span>
                 </div>
             </div>
-        </header>
 
-        <main>
-            <div class="challenge">
-                <div class="challenge-header">
-                    <h2><i class="fas fa-tasks"></i> المهمة</h2>
-                    <div class="level-indicator">
-                        <span class="level-number">1</span>
-                        <span class="level-text">من 10</span>
-                    </div>
+            <div class="question-container">
+                <div class="question" id="question">
+                    اختر الإجابة الصحيحة
                 </div>
-                <p class="challenge-text">اكتب عنوان باستخدام علامة &lt;h1&gt;</p>
-                <div class="code-area">
-                    <div class="code-header">
-                        <span class="code-title"><i class="fas fa-code"></i> اكتب كودك هنا</span>
-                        <div class="code-actions">
-                            <button class="code-action" id="clear-code">
-                                <i class="fas fa-trash"></i> مسح
-                            </button>
-                        </div>
-                    </div>
-                    <textarea id="user-code" placeholder="اكتب كودك هنا..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-                    <div class="code-preview"></div>
-                    <div class="button-container">
-                        <button id="back-button" class="secondary-button">
-                            <i class="fas fa-arrow-left"></i> المستوى السابق
-                        </button>
-                        <button id="check-button" class="primary-button">
-                            <i class="fas fa-check"></i> تحقق من الحل
-                        </button>
-                        <button id="show-solution" class="secondary-button">
-                            <i class="fas fa-lightbulb"></i> عرض الحل
-                        </button>
-                        <button id="next-button" class="secondary-button" style="display: none;">
-                            <i class="fas fa-arrow-right"></i> المستوى التالي
-                        </button>
-                    </div>
+                
+                <div class="options" id="options">
+                    <!-- الخيارات ستظهر هنا -->
                 </div>
-                <div class="result"></div>
             </div>
-        </main>
+
+            <div class="game-controls">
+                <button class="btn btn-secondary" onclick="backToMenu()">العودة للقائمة</button>
+                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" style="display: none;">السؤال التالي</button>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+
+        <div class="result-screen" id="resultScreen" style="display: none;">
+            <h2>🎉 انتهت اللعبة!</h2>
+            <div class="final-score">
+                <h3>النقاط النهائية: <span id="finalScore">0</span></h3>
+                <div class="stars" id="stars"></div>
+            </div>
+            <div class="result-buttons">
+                <button class="btn btn-primary" onclick="playAgain()">العب مرة أخرى</button>
+                <button class="btn btn-secondary" onclick="backToMenu()">العودة للقائمة</button>
+            </div>
+        </div>
     </div>
+
+    <footer class="social-footer">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/15dFQrfgop/" class="social-icon facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/ana.aimen.7?igsh=MXB2bG5xaDAwNGx6aQ==" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/201104378091" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2024 - Ayman</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
-</html>
+</html> 

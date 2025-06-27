@@ -1,672 +1,464 @@
-class ProgrammingGame {
-    constructor() {
-        this.currentLanguage = null;
-        this.currentLevel = 1;
-        this.stars = 0;
-        
-        // حماية إضافية
-        this.setupProtection();
-        
-        this.gameData = {
-            html: {
-                title: "تعلم HTML",
-                icon: "🌐",
-                levels: [
-            {
-                        question: "اكتب عنوان رئيسي باستخدام علامة &lt;h1&gt;",
-                solution: "<h1>مرحباً بالعالم</h1>",
-                        stars: 3,
-                        hint: "استخدم علامة h1 مع النص المطلوب"
-            },
-            {
-                question: "اكتب عنوان فرعي باستخدام علامة &lt;h2&gt;",
-                        solution: "<h2>عنوان فرعي</h2>",
-                        stars: 2,
-                        hint: "استخدم علامة h2 بدلاً من h1"
-            },
-            {
-                question: "اكتب فقرة باستخدام علامة &lt;p&gt;",
-                        solution: "<p>هذه فقرة نصية</p>",
-                        stars: 2,
-                        hint: "استخدم علامة p للنصوص العادية"
-            },
-            {
-                        question: "اكتب رابط باستخدام علامة &lt;a&gt; مع href",
-                        solution: "<a href='https://www.example.com'>رابط المثال</a>",
-                        stars: 3,
-                        hint: "استخدم علامة a مع خاصية href"
-            },
-            {
-                        question: "اكتب قائمة غير مرتبة باستخدام &lt;ul&gt; و &lt;li&gt;",
-                        solution: "<ul><li>عنصر أول</li><li>عنصر ثاني</li></ul>",
-                        stars: 3,
-                        hint: "استخدم ul للقائمة و li للعناصر"
-                    },
-                    {
-                        question: "اكتب صورة باستخدام علامة &lt;img&gt; مع src و alt",
-                        solution: "<img src='image.jpg' alt='وصف الصورة'>",
-                        stars: 3,
-                        hint: "استخدم علامة img مع src و alt"
-                    },
-                    {
-                        question: "اكتب جدول بسيط باستخدام &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;",
-                        solution: "<table><tr><td>خلية 1</td><td>خلايا 2</td></tr></table>",
-                        stars: 4,
-                        hint: "استخدم table للجدول و tr للصفوف و td للخلايا"
-                    },
-                    {
-                        question: "اكتب نموذج بسيط باستخدام &lt;form&gt; و &lt;input&gt;",
-                        solution: "<form><input type='text' placeholder='اكتب هنا'></form>",
-                        stars: 4,
-                        hint: "استخدم form للنموذج و input للحقل"
-                    },
-                    {
-                        question: "اكتب زر باستخدام علامة &lt;button&gt;",
-                        solution: "<button>اضغط هنا</button>",
-                        stars: 2,
-                        hint: "استخدم علامة button للزر"
-            },
-            {
-                        question: "اكتب قسم باستخدام علامة &lt;div&gt; مع محتوى",
-                        solution: "<div>هذا قسم منفصل</div>",
-                        stars: 2,
-                        hint: "استخدم علامة div لتقسيم المحتوى"
-                    }
-                ]
-            },
-            css: {
-                title: "تعلم CSS",
-                icon: "🎨",
-                levels: [
-                    {
-                        question: "اكتب CSS لتغيير لون النص إلى أزرق",
-                        solution: "color: blue;",
-                        stars: 2,
-                        hint: "استخدم خاصية color"
-                    },
-                    {
-                        question: "اكتب CSS لتغيير حجم الخط إلى 20px",
-                        solution: "font-size: 20px;",
-                        stars: 2,
-                        hint: "استخدم خاصية font-size"
-                    },
-                    {
-                        question: "اكتب CSS لتغيير لون خلفية العنصر إلى أحمر",
-                        solution: "background-color: red;",
-                        stars: 2,
-                        hint: "استخدم خاصية background-color"
-                    },
-                    {
-                        question: "اكتب CSS لإضافة حدود للعنصر",
-                        solution: "border: 2px solid black;",
-                        stars: 3,
-                        hint: "استخدم خاصية border"
-                    },
-                    {
-                        question: "اكتب CSS لتوسيط النص",
-                        solution: "text-align: center;",
-                        stars: 2,
-                        hint: "استخدم خاصية text-align"
-            },
-            {
-                        question: "اكتب CSS لإضافة padding للعنصر",
-                        solution: "padding: 10px;",
-                        stars: 2,
-                        hint: "استخدم خاصية padding"
-                    },
-                    {
-                        question: "اكتب CSS لإضافة margin للعنصر",
-                        solution: "margin: 15px;",
-                        stars: 2,
-                        hint: "استخدم خاصية margin"
-                    },
-                    {
-                        question: "اكتب CSS لتغيير نوع الخط",
-                        solution: "font-family: Arial, sans-serif;",
-                        stars: 3,
-                        hint: "استخدم خاصية font-family"
-                    },
-                    {
-                        question: "اكتب CSS لإضافة تأثير hover للزر",
-                        solution: "button:hover { background-color: green; }",
-                        stars: 4,
-                        hint: "استخدم :hover مع خاصية background-color"
-            },
-            {
-                        question: "اكتب CSS لجعل العنصر دائري",
-                        solution: "border-radius: 50%;",
-                        stars: 3,
-                        hint: "استخدم خاصية border-radius"
-                    }
-                ]
-            },
-            javascript: {
-                title: "تعلم JavaScript",
-                icon: "⚡",
-                levels: [
-                    {
-                        question: "اكتب متغير باسم 'name' وقيمته 'أحمد'",
-                        solution: "let name = 'أحمد';",
-                        stars: 2,
-                        hint: "استخدم let لإنشاء متغير"
-            },
-            {
-                        question: "اكتب دالة بسيطة باسم 'greet' ترجع 'مرحباً'",
-                        solution: "function greet() { return 'مرحباً'; }",
-                        stars: 3,
-                        hint: "استخدم function لإنشاء دالة"
-            },
-            {
-                        question: "اكتب شرط if للتحقق من أن العمر أكبر من 18",
-                        solution: "if (age > 18) { console.log('بالغ'); }",
-                        stars: 3,
-                        hint: "استخدم if مع علامة >"
-                    },
-                    {
-                        question: "اكتب حلقة for لطباعة الأرقام من 1 إلى 5",
-                        solution: "for (let i = 1; i <= 5; i++) { console.log(i); }",
-                        stars: 4,
-                        hint: "استخدم for مع متغير i"
-                    },
-                    {
-                        question: "اكتب مصفوفة تحتوي على 3 عناصر",
-                        solution: "let array = ['أول', 'ثاني', 'ثالث'];",
-                        stars: 3,
-                        hint: "استخدم [] لإنشاء مصفوفة"
-                    },
-                    {
-                        question: "اكتب كائن بسيط باسم 'person' مع خاصية 'name'",
-                        solution: "let person = { name: 'أحمد' };",
-                        stars: 3,
-                        hint: "استخدم {} لإنشاء كائن"
-                    },
-                    {
-                        question: "اكتب حدث click على زر",
-                        solution: "button.addEventListener('click', function() { alert('تم النقر!'); });",
-                        stars: 4,
-                        hint: "استخدم addEventListener مع 'click'"
-                    },
-                    {
-                        question: "اكتب دالة arrow function",
-                        solution: "const multiply = (a, b) => a * b;",
-                        stars: 4,
-                        hint: "استخدم => لإنشاء arrow function"
-                    },
-                    {
-                        question: "اكتب try-catch لمعالجة الأخطاء",
-                        solution: "try { riskyCode(); } catch (error) { console.log(error); }",
-                        stars: 4,
-                        hint: "استخدم try و catch لمعالجة الأخطاء"
-                    },
-                    {
-                        question: "اكتب Promise بسيط",
-                        solution: "let promise = new Promise((resolve, reject) => { resolve('نجح!'); });",
-                        stars: 5,
-                        hint: "استخدم new Promise مع resolve"
-            }
-                ]
-            }
-        };
-        
-        this.userProgress = this.loadProgress();
-        this.initializeGame();
-        this.setupEventListeners();
+// Game state variables
+let currentLanguage = '';
+let currentQuestionIndex = 0;
+let score = 0;
+let level = 1;
+let questions = [];
+let selectedAnswer = null;
+let gameEnded = false;
+
+// Code Protection - Prevent copying and stealing
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    showProtectionMessage('لا يمكن استخدام القائمة اليمنى');
+});
+
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('dragstart', function(e) {
+    e.preventDefault();
+});
+
+// Disable keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Prevent Ctrl+A (Select All)
+    if (e.ctrlKey && e.key === 'a') {
+        e.preventDefault();
+        showProtectionMessage('لا يمكن تحديد كل النص');
     }
-
-    setupProtection() {
-        // حماية إضافية من النسخ والسرقة
-        (function() {
-            'use strict';
-            
-            // منع فحص الكود
-            const originalLog = console.log;
-            console.log = function() {};
-            
-            // منع فتح وحدة تحكم المطور
-            setInterval(() => {
-                if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-                    document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-size: 24px; color: red;">⚠️ تم اكتشاف محاولة فتح وحدة تحكم المطور<br><br>هذا المحتوى محمي من النسخ والسرقة<br><br>© Codinza - جميع الحقوق محفوظة</div>';
-                }
-            }, 1000);
-            
-            // منع النسخ
-            document.addEventListener('copy', (e) => {
-                e.preventDefault();
-                alert('⚠️ النسخ غير مسموح\n\n© Codinza - جميع الحقوق محفوظة');
-            });
-            
-            // منع اللصق
-            document.addEventListener('paste', (e) => {
-                e.preventDefault();
-            });
-            
-            // منع القص
-            document.addEventListener('cut', (e) => {
-                e.preventDefault();
-            });
-            
-            // منع فحص الكود المصدري
-            document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && (e.key === 'u' || e.key === 's')) {
-                    e.preventDefault();
-                    alert('⚠️ هذا المحتوى محمي من النسخ والسرقة\n\n© Codinza - جميع الحقوق محفوظة');
-                }
-            });
-        })();
+    // Prevent Ctrl+C (Copy)
+    if (e.ctrlKey && e.key === 'c') {
+        e.preventDefault();
+        showProtectionMessage('لا يمكن نسخ النص');
     }
-
-    loadProgress() {
-        const saved = localStorage.getItem('programmingGameProgress');
-        return saved ? JSON.parse(saved) : {
-            html: { completed: 0, totalStars: 0 },
-            css: { completed: 0, totalStars: 0 },
-            javascript: { completed: 0, totalStars: 0 }
-        };
+    // Prevent Ctrl+U (View Source)
+    if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+        showProtectionMessage('لا يمكن عرض الكود المصدري');
     }
-
-    saveProgress() {
-        localStorage.setItem('programmingGameProgress', JSON.stringify(this.userProgress));
+    // Prevent F12 (Developer Tools)
+    if (e.key === 'F12') {
+        e.preventDefault();
+        showProtectionMessage('لا يمكن فتح أدوات المطور');
     }
-
-    initializeGame() {
-        this.updateProgressDisplay();
-        this.updateLevelDisplay();
-        this.updateChallenge();
+    // Prevent Ctrl+Shift+I (Developer Tools)
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+        showProtectionMessage('لا يمكن فتح أدوات المطور');
     }
+    // Prevent Ctrl+Shift+C (Developer Tools)
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        showProtectionMessage('لا يمكن فتح أدوات المطور');
+    }
+});
 
-    setupEventListeners() {
-        // أزرار اختيار اللغة - تحسين للهواتف المحمولة
-        document.querySelectorAll('.language-card').forEach(card => {
-            // إضافة معالج النقر الأساسي
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const language = card.dataset.language;
-                this.selectLanguage(language);
-            });
-            
-            // تحسين التفاعل مع اللمس للهواتف المحمولة
-            let touchStartTime = 0;
-            let touchStartY = 0;
-            
-            card.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                touchStartTime = Date.now();
-                touchStartY = e.touches[0].clientY;
-                card.style.transform = 'scale(0.98)';
-                card.style.transition = 'transform 0.1s ease';
-            });
-            
-            card.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                const touchY = e.touches[0].clientY;
-                const deltaY = Math.abs(touchY - touchStartY);
-                
-                // إذا كان المستخدم يمرر بدلاً من النقر، أزل التأثير
-                if (deltaY > 10) {
-                    card.style.transform = '';
-                }
-            });
-            
-            card.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                const touchEndTime = Date.now();
-                const touchDuration = touchEndTime - touchStartTime;
-                
-                card.style.transform = '';
-                card.style.transition = '';
-                
-                // إذا كان النقر قصيراً (أقل من 300ms)، اعتبره نقراً صحيحاً
-                if (touchDuration < 300) {
-                    const language = card.dataset.language;
-                    this.selectLanguage(language);
-                }
-            });
-            
-            // منع النقر على العناصر الداخلية من إيقاف النقر على البطاقة
-            card.querySelectorAll('*').forEach(element => {
-                element.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
-                
-                element.addEventListener('touchstart', (e) => {
-                    e.stopPropagation();
-                });
-                
-                element.addEventListener('touchend', (e) => {
-                    e.stopPropagation();
-                });
-            });
-        });
+// Show protection message
+function showProtectionMessage(message) {
+    const protectionDiv = document.createElement('div');
+    protectionDiv.className = 'protection-message';
+    protectionDiv.textContent = message;
+    protectionDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(45deg, #f44336, #d32f2f);
+        color: white;
+        padding: 20px 30px;
+        border-radius: 10px;
+        font-weight: bold;
+        z-index: 10000;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        animation: protectionPulse 0.5s ease;
+    `;
+    
+    document.body.appendChild(protectionDiv);
+    
+    setTimeout(() => {
+        protectionDiv.remove();
+    }, 2000);
+}
 
-        // زر العودة للقائمة الرئيسية
-        const backToMenuButton = document.getElementById('back-to-menu');
-        if (backToMenuButton) {
-            backToMenuButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.showMainMenu();
-            });
-            
-            // تحسين التفاعل مع اللمس
-            this.addTouchSupport(backToMenuButton);
+// Add CSS for protection message animation
+const protectionStyle = document.createElement('style');
+protectionStyle.textContent = `
+    @keyframes protectionPulse {
+        0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+        50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+    
+    body {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+`;
+document.head.appendChild(protectionStyle);
+
+// Questions database
+const questionsDatabase = {
+    html: [
+        {
+            question: "ما هو العنصر المستخدم لإنشاء عنوان رئيسي في HTML؟",
+            options: ["<title>", "<h1>", "<header>", "<main>"],
+            correct: 1,
+            explanation: "العنصر <h1> يستخدم لإنشاء العنوان الرئيسي في الصفحة"
+        },
+        {
+            question: "أي من العناصر التالية يستخدم لإنشاء رابط في HTML؟",
+            options: ["<link>", "<a>", "<url>", "<href>"],
+            correct: 1,
+            explanation: "العنصر <a> يستخدم لإنشاء الروابط في HTML"
+        },
+        {
+            question: "ما هو العنصر الصحيح لإنشاء قائمة مرتبة؟",
+            options: ["<ul>", "<ol>", "<li>", "<list>"],
+            correct: 1,
+            explanation: "العنصر <ol> يستخدم لإنشاء قائمة مرتبة (ordered list)"
+        },
+        {
+            question: "كيف يتم إدراج صورة في HTML؟",
+            options: ["<img src='image.jpg'>", "<image src='image.jpg'>", "<picture src='image.jpg'>", "<photo src='image.jpg'>"],
+            correct: 0,
+            explanation: "العنصر <img> مع السمة src يستخدم لإدراج الصور"
+        },
+        {
+            question: "ما هو العنصر المستخدم لإنشاء نموذج في HTML؟",
+            options: ["<form>", "<input>", "<submit>", "<button>"],
+            correct: 0,
+            explanation: "العنصر <form> يستخدم لإنشاء النماذج في HTML"
+        },
+        {
+            question: "أي من العناصر التالية يستخدم لإنشاء فقرة نصية؟",
+            options: ["<text>", "<p>", "<paragraph>", "<div>"],
+            correct: 1,
+            explanation: "العنصر <p> يستخدم لإنشاء الفقرات النصية"
+        },
+        {
+            question: "كيف يتم إنشاء تعليق في HTML؟",
+            options: ["<!-- تعليق -->", "// تعليق", "/* تعليق */", "<!-- تعليق"],
+            correct: 0,
+            explanation: "التعليقات في HTML تبدأ بـ <!-- وتنتهي بـ -->"
+        },
+        {
+            question: "ما هو العنصر المستخدم لإنشاء جدول في HTML؟",
+            options: ["<table>", "<grid>", "<chart>", "<data>"],
+            correct: 0,
+            explanation: "العنصر <table> يستخدم لإنشاء الجداول في HTML"
         }
-
-        // أزرار اللعبة
-        const checkButton = document.getElementById('check-button');
-        if (checkButton) {
-            checkButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.checkSolution();
-            });
-            this.addTouchSupport(checkButton);
+    ],
+    css: [
+        {
+            question: "ما هي الخاصية المستخدمة لتغيير لون النص في CSS؟",
+            options: ["text-color", "color", "font-color", "text-style"],
+            correct: 1,
+            explanation: "الخاصية color تستخدم لتغيير لون النص"
+        },
+        {
+            question: "كيف يتم تعيين خلفية للعنصر في CSS؟",
+            options: ["background-color", "bg-color", "color-background", "element-background"],
+            correct: 0,
+            explanation: "الخاصية background-color تستخدم لتعيين لون الخلفية"
+        },
+        {
+            question: "ما هي الخاصية المستخدمة لتغيير حجم الخط؟",
+            options: ["text-size", "font-size", "size", "text-height"],
+            correct: 1,
+            explanation: "الخاصية font-size تستخدم لتغيير حجم الخط"
+        },
+        {
+            question: "كيف يتم إضافة حدود للعنصر؟",
+            options: ["border", "outline", "frame", "edge"],
+            correct: 0,
+            explanation: "الخاصية border تستخدم لإضافة حدود للعنصر"
+        },
+        {
+            question: "ما هي الخاصية المستخدمة لتوسيط العنصر أفقياً؟",
+            options: ["center", "align-center", "text-align: center", "margin: auto"],
+            correct: 3,
+            explanation: "margin: auto تستخدم لتوسيط العنصر أفقياً"
+        },
+        {
+            question: "كيف يتم إضافة مساحة داخلية للعنصر؟",
+            options: ["margin", "padding", "space", "inside"],
+            correct: 1,
+            explanation: "الخاصية padding تستخدم لإضافة مساحة داخلية"
+        },
+        {
+            question: "ما هي الخاصية المستخدمة لتغيير نمط الخط؟",
+            options: ["font-family", "text-family", "font-style", "text-font"],
+            correct: 0,
+            explanation: "الخاصية font-family تستخدم لتغيير نمط الخط"
+        },
+        {
+            question: "كيف يتم إخفاء عنصر في CSS؟",
+            options: ["hide", "display: none", "visible: false", "show: none"],
+            correct: 1,
+            explanation: "display: none تستخدم لإخفاء العنصر"
         }
-
-        const showSolutionButton = document.getElementById('show-solution');
-        if (showSolutionButton) {
-            showSolutionButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.showSolution();
-            });
-            this.addTouchSupport(showSolutionButton);
+    ],
+    javascript: [
+        {
+            question: "كيف يتم تعريف متغير في JavaScript؟",
+            options: ["var x = 5", "variable x = 5", "let x = 5", "const x = 5"],
+            correct: 2,
+            explanation: "let و const و var تستخدم لتعريف المتغيرات"
+        },
+        {
+            question: "ما هي الدالة المستخدمة لطباعة نص في وحدة التحكم؟",
+            options: ["print()", "console.log()", "alert()", "write()"],
+            correct: 1,
+            explanation: "console.log() تستخدم لطباعة النص في وحدة التحكم"
+        },
+        {
+            question: "كيف يتم إنشاء دالة في JavaScript؟",
+            options: ["function myFunction()", "def myFunction()", "func myFunction()", "create myFunction()"],
+            correct: 0,
+            explanation: "function تستخدم لإنشاء الدوال في JavaScript"
+        },
+        {
+            question: "ما هو الرمز المستخدم للمقارنة المتساوية في القيمة والنوع؟",
+            options: ["==", "===", "=", "!="],
+            correct: 1,
+            explanation: "=== تستخدم للمقارنة المتساوية في القيمة والنوع"
+        },
+        {
+            question: "كيف يتم إنشاء مصفوفة في JavaScript؟",
+            options: ["array[]", "[]", "new Array()", "array()"],
+            correct: 1,
+            explanation: "[] تستخدم لإنشاء مصفوفة جديدة"
+        },
+        {
+            question: "ما هي الدالة المستخدمة لإضافة عنصر في نهاية المصفوفة؟",
+            options: ["push()", "add()", "append()", "insert()"],
+            correct: 0,
+            explanation: "push() تستخدم لإضافة عنصر في نهاية المصفوفة"
+        },
+        {
+            question: "كيف يتم التحقق من وجود خاصية في كائن؟",
+            options: ["hasOwnProperty()", "hasProperty()", "contains()", "exists()"],
+            correct: 0,
+            explanation: "hasOwnProperty() تستخدم للتحقق من وجود خاصية"
+        },
+        {
+            question: "ما هو الرمز المستخدم للتعليق في JavaScript؟",
+            options: ["<!-- -->", "//", "/* */", "##"],
+            correct: 1,
+            explanation: "// تستخدم للتعليق في سطر واحد"
         }
+    ]
+};
 
-        const backButton = document.getElementById('back-button');
-        if (backButton) {
-            backButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.goBack();
-            });
-            this.addTouchSupport(backButton);
-        }
+// Initialize game
+function initGame() {
+    showMenu();
+}
 
-        const nextButton = document.getElementById('next-button');
-        if (nextButton) {
-            nextButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.nextLevel();
-            });
-            this.addTouchSupport(nextButton);
-        }
+// Show main menu
+function showMenu() {
+    document.querySelector('.game-menu').style.display = 'grid';
+    document.getElementById('gameArea').style.display = 'none';
+    document.getElementById('resultScreen').style.display = 'none';
+}
 
-        // زر مسح الكود
-        const clearCodeButton = document.getElementById('clear-code');
-        if (clearCodeButton) {
-            clearCodeButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.clearCode();
-            });
-            this.addTouchSupport(clearCodeButton);
-        }
+// Start game with selected language
+function startGame(language) {
+    currentLanguage = language;
+    currentQuestionIndex = 0;
+    score = 0;
+    level = 1;
+    selectedAnswer = null;
+    gameEnded = false;
+    
+    questions = [...questionsDatabase[language]];
+    shuffleArray(questions);
+    
+    document.querySelector('.game-menu').style.display = 'none';
+    document.getElementById('gameArea').style.display = 'block';
+    
+    updateGameTitle();
+    updateScore();
+    showQuestion();
+}
 
-        // تحديث الكود الملون عند الكتابة
-        const userCode = document.getElementById('user-code');
-        if (userCode) {
-            userCode.addEventListener('input', () => this.highlightCode());
-            
-            // تحسين الكتابة على الهواتف
-            userCode.addEventListener('focus', () => {
-                // تأخير قصير لضمان ظهور لوحة المفاتيح
-                setTimeout(() => {
-                    userCode.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            });
-            
-            // تحسين التفاعل مع اللمس على منطقة الكود
-            userCode.addEventListener('touchstart', (e) => {
-                e.stopPropagation();
-            });
-        }
-        
-        // منع التكبير على الهواتف
-        this.preventZoom();
-        
-        // إضافة معالج للتحقق من أن الصفحة محملة بشكل صحيح
-        window.addEventListener('load', () => {
-            console.log('تم تحميل الصفحة بنجاح');
-            this.updateProgressDisplay();
-        });
+// Update game title based on language
+function updateGameTitle() {
+    const titles = {
+        html: 'تعلم HTML',
+        css: 'تعلم CSS',
+        javascript: 'تعلم JavaScript'
+    };
+    document.getElementById('gameTitle').textContent = titles[currentLanguage];
+}
+
+// Show current question
+function showQuestion() {
+    if (currentQuestionIndex >= questions.length) {
+        endGame();
+        return;
     }
+    
+    const question = questions[currentQuestionIndex];
+    document.getElementById('question').textContent = question.question;
+    
+    const optionsContainer = document.getElementById('options');
+    optionsContainer.innerHTML = '';
+    
+    question.options.forEach((option, index) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option';
+        optionElement.textContent = option;
+        optionElement.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(optionElement);
+    });
+    
+    document.getElementById('nextBtn').style.display = 'none';
+    selectedAnswer = null;
+    
+    updateProgress();
+}
 
-    addTouchSupport(element) {
-        element.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            element.style.transform = 'scale(0.95)';
-        });
+// Select answer
+function selectAnswer(answerIndex) {
+    if (selectedAnswer !== null || gameEnded) return;
+    
+    selectedAnswer = answerIndex;
+    const question = questions[currentQuestionIndex];
+    const options = document.querySelectorAll('.option');
+    
+    options.forEach((option, index) => {
+        option.onclick = null; // Disable further clicks
         
-        element.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            element.style.transform = '';
-        });
-    }
-
-    preventZoom() {
-        // منع التكبير على الهواتف
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (event) => {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-    }
-
-    selectLanguage(language) {
-        this.currentLanguage = language;
-        this.currentLevel = 1;
-        this.stars = 0;
-        
-        // إخفاء الصفحة الرئيسية وإظهار صفحة اللعبة
-        document.querySelector('.game-container').style.display = 'none';
-        document.querySelector('.game-page').style.display = 'block';
-        
-        // تحديث عنوان اللغة مع إضافة شعار Codinza
-        const languageTitle = document.getElementById('language-title');
-        languageTitle.textContent = this.gameData[language].title;
-        
-        // إضافة تأثير للشعار
-        const brandLogo = document.querySelector('.brand-logo');
-        if (brandLogo) {
-            brandLogo.style.animation = 'logoPulse 0.5s ease-in-out';
-            setTimeout(() => {
-                brandLogo.style.animation = 'logoPulse 2s ease-in-out infinite';
-            }, 500);
+        if (index === question.correct) {
+            option.classList.add('correct');
+        } else if (index === answerIndex && answerIndex !== question.correct) {
+            option.classList.add('incorrect');
         }
-        
-        this.updateLevelDisplay();
-        this.updateChallenge();
-        this.updateStarsDisplay();
+    });
+    
+    if (answerIndex === question.correct) {
+        score += 10;
+        updateScore();
+        showMessage('إجابة صحيحة! 🎉', 'success');
+    } else {
+        showMessage(`إجابة خاطئة! الإجابة الصحيحة هي: ${question.options[question.correct]}`, 'error');
     }
+    
+    document.getElementById('nextBtn').style.display = 'inline-block';
+}
 
-    showMainMenu() {
-        document.querySelector('.game-page').style.display = 'none';
-        document.querySelector('.game-container').style.display = 'block';
-        this.updateProgressDisplay();
+// Show message
+function showMessage(message, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
+        background: ${type === 'success' ? 'linear-gradient(45deg, #4caf50, #45a049)' : 'linear-gradient(45deg, #f44336, #d32f2f)'};
+    `;
+    
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 3000);
+}
+
+// Next question
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex % 3 === 0) {
+        level++;
+        updateScore();
     }
+    showQuestion();
+}
 
-    updateProgressDisplay() {
-        Object.keys(this.userProgress).forEach(language => {
-            const card = document.querySelector(`[data-language="${language}"]`);
-            if (card) {
-                const progressText = card.querySelector('.progress-text');
-                const progressFill = card.querySelector('.progress-fill');
-                const completed = this.userProgress[language].completed;
-                const total = this.gameData[language].levels.length;
-                const percentage = (completed / total) * 100;
-                
-                progressText.textContent = `${completed}/${total} مستويات مكتملة`;
-                progressFill.style.width = `${percentage}%`;
-            }
-        });
+// Update score display
+function updateScore() {
+    document.getElementById('score').textContent = score;
+    document.getElementById('level').textContent = level;
+}
+
+// Update progress bar
+function updateProgress() {
+    const progress = (currentQuestionIndex / questions.length) * 100;
+    document.getElementById('progress').style.width = progress + '%';
+}
+
+// End game
+function endGame() {
+    gameEnded = true;
+    document.getElementById('gameArea').style.display = 'none';
+    document.getElementById('resultScreen').style.display = 'block';
+    
+    document.getElementById('finalScore').textContent = score;
+    
+    // Show stars based on score
+    const starsContainer = document.getElementById('stars');
+    const maxScore = questions.length * 10;
+    const percentage = (score / maxScore) * 100;
+    
+    let stars = '';
+    if (percentage >= 80) {
+        stars = '⭐⭐⭐';
+    } else if (percentage >= 60) {
+        stars = '⭐⭐';
+    } else if (percentage >= 40) {
+        stars = '⭐';
+    } else {
+        stars = '😔';
     }
+    
+    starsContainer.textContent = stars;
+}
 
-    updateLevelDisplay() {
-        const levelElement = document.querySelector('.level');
-        const levelNumber = document.querySelector('.level-number');
-        
-        if (levelElement) {
-            levelElement.textContent = `مستوى ${this.currentLevel}`;
-        }
-        
-        if (levelNumber) {
-            levelNumber.textContent = this.currentLevel;
-        }
-    }
+// Play again
+function playAgain() {
+    startGame(currentLanguage);
+}
 
-    updateChallenge() {
-        const challengeText = document.querySelector('.challenge-text');
-        if (challengeText && this.currentLanguage) {
-            const currentLevelData = this.gameData[this.currentLanguage].levels[this.currentLevel - 1];
-            challengeText.innerHTML = currentLevelData.question;
-        }
-    }
+// Back to menu
+function backToMenu() {
+    showMenu();
+}
 
-    updateStarsDisplay() {
-        const stars = document.querySelectorAll('.star');
-        stars.forEach((star, index) => {
-            if (index < this.stars) {
-                star.style.color = '#fdd835';
-            } else {
-                star.style.color = '#bb86fc';
-            }
-        });
-    }
-
-    highlightCode() {
-        const codePreview = document.querySelector('.code-preview');
-        const code = document.getElementById('user-code').value;
-        
-        if (!codePreview) return;
-        
-        // تحليل الكود وإضافة العلامات المناسبة
-        let highlightedCode = code;
-        
-        if (this.currentLanguage === 'html') {
-            highlightedCode = highlightedCode.replace(/<([a-z][a-z0-9]*)\b[^>]*>/gi, '<span class="tag">$&</span>');
-            highlightedCode = highlightedCode.replace(/<\/([a-z][a-z0-9]*)\b[^>]*>/gi, '<span class="tag">$&</span>');
-            highlightedCode = highlightedCode.replace(/"[^"]*"/g, '<span class="string">$&</span>');
-        } else if (this.currentLanguage === 'css') {
-            highlightedCode = highlightedCode.replace(/([a-z-]+):/g, '<span class="property">$1:</span>');
-            highlightedCode = highlightedCode.replace(/:\s*([^;]+);/g, ': <span class="value">$1;</span>');
-        } else if (this.currentLanguage === 'javascript') {
-            highlightedCode = highlightedCode.replace(/\b(function|let|const|var|return|if|else|for|while)\b/gi, '<span class="keyword">$&</span>');
-            highlightedCode = highlightedCode.replace(/"[^"]*"/g, '<span class="string">$&</span>');
-            highlightedCode = highlightedCode.replace(/'[^']*'/g, '<span class="string">$&</span>');
-        }
-        
-        codePreview.innerHTML = highlightedCode;
-    }
-
-    showSolution() {
-        if (!this.currentLanguage) return;
-        
-        const currentLevelData = this.gameData[this.currentLanguage].levels[this.currentLevel - 1];
-        const userCode = document.getElementById('user-code');
-        userCode.value = currentLevelData.solution;
-        
-        const resultElement = document.querySelector('.result');
-        resultElement.className = 'result success';
-        resultElement.textContent = 'تم عرض الحل! يمكنك تعديله أو استخدامه كما هو.';
-        resultElement.style.display = 'block';
-        
-        setTimeout(() => {
-            resultElement.style.display = 'none';
-        }, 3000);
-    }
-
-    goBack() {
-        if (this.currentLevel > 1) {
-            this.currentLevel--;
-            this.updateLevelDisplay();
-            this.updateChallenge();
-            document.getElementById('user-code').value = '';
-            
-            const resultElement = document.querySelector('.result');
-            resultElement.className = 'result success';
-            resultElement.textContent = 'تم العودة إلى المستوى السابق';
-            resultElement.style.display = 'block';
-            
-            setTimeout(() => {
-                resultElement.style.display = 'none';
-            }, 3000);
-        } else {
-            const resultElement = document.querySelector('.result');
-            resultElement.className = 'result error';
-            resultElement.textContent = 'أنت في المستوى الأول';
-            resultElement.style.display = 'block';
-            
-            setTimeout(() => {
-                resultElement.style.display = 'none';
-            }, 3000);
-        }
-    }
-
-    nextLevel() {
-        if (this.currentLevel < this.gameData[this.currentLanguage].levels.length) {
-            this.currentLevel++;
-            this.updateLevelDisplay();
-            this.updateChallenge();
-            document.getElementById('user-code').value = '';
-            document.getElementById('next-button').style.display = 'none';
-        }
-    }
-
-    checkSolution() {
-        if (!this.currentLanguage) return;
-        
-        const userCode = document.getElementById('user-code').value.trim();
-        const currentLevelData = this.gameData[this.currentLanguage].levels[this.currentLevel - 1];
-        const solution = currentLevelData.solution;
-        const resultElement = document.querySelector('.result');
-        
-        if (userCode === solution) {
-            resultElement.className = 'result success';
-            resultElement.textContent = 'ممتاز! لقد نجحت في هذا المستوى!';
-            
-            // تحديث التقدم
-            this.userProgress[this.currentLanguage].completed = Math.max(
-                this.userProgress[this.currentLanguage].completed,
-                this.currentLevel
-            );
-            this.userProgress[this.currentLanguage].totalStars += currentLevelData.stars;
-            this.saveProgress();
-
-            // إظهار زر المستوى التالي
-            if (this.currentLevel < this.gameData[this.currentLanguage].levels.length) {
-                document.getElementById('next-button').style.display = 'inline-block';
-            } else {
-                resultElement.textContent = 'تهانينا! لقد أكملت جميع مستويات ' + this.gameData[this.currentLanguage].title + '!';
-            }
-        } else {
-            resultElement.className = 'result error';
-            resultElement.textContent = 'المحاولة غير صحيحة. حاول مرة أخرى! تلميح: ' + currentLevelData.hint;
-        }
-        
-        resultElement.style.display = 'block';
-        setTimeout(() => {
-            resultElement.style.display = 'none';
-        }, 5000);
-    }
-
-    clearCode() {
-        const userCode = document.getElementById('user-code');
-        if (userCode) {
-            userCode.value = '';
-            this.highlightCode();
-            
-            const resultElement = document.querySelector('.result');
-            resultElement.className = 'result success';
-            resultElement.textContent = 'تم مسح الكود!';
-            resultElement.style.display = 'block';
-            
-            setTimeout(() => {
-                resultElement.style.display = 'none';
-            }, 2000);
-        }
+// Shuffle array function
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
 }
 
-// Initialize the game when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    new ProgrammingGame();
-});
+// Add CSS animation for messages
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize game when page loads
+document.addEventListener('DOMContentLoaded', initGame); 
