@@ -1170,7 +1170,7 @@ footer {
     opacity: 0.1;
     animation: brandShine 4s ease-in-out infinite;
     z-index: -1;
-}
+    }
 
 @keyframes brandShine {
     0%, 100% { 

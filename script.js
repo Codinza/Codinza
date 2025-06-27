@@ -12,31 +12,31 @@ class ProgrammingGame {
                 title: "تعلم HTML",
                 icon: "🌐",
                 levels: [
-                    {
+            {
                         question: "اكتب عنوان رئيسي باستخدام علامة &lt;h1&gt;",
-                        solution: "<h1>مرحباً بالعالم</h1>",
+                solution: "<h1>مرحباً بالعالم</h1>",
                         stars: 3,
                         hint: "استخدم علامة h1 مع النص المطلوب"
-                    },
-                    {
-                        question: "اكتب عنوان فرعي باستخدام علامة &lt;h2&gt;",
+            },
+            {
+                question: "اكتب عنوان فرعي باستخدام علامة &lt;h2&gt;",
                         solution: "<h2>عنوان فرعي</h2>",
                         stars: 2,
                         hint: "استخدم علامة h2 بدلاً من h1"
-                    },
-                    {
-                        question: "اكتب فقرة باستخدام علامة &lt;p&gt;",
+            },
+            {
+                question: "اكتب فقرة باستخدام علامة &lt;p&gt;",
                         solution: "<p>هذه فقرة نصية</p>",
                         stars: 2,
                         hint: "استخدم علامة p للنصوص العادية"
-                    },
-                    {
+            },
+            {
                         question: "اكتب رابط باستخدام علامة &lt;a&gt; مع href",
                         solution: "<a href='https://www.example.com'>رابط المثال</a>",
                         stars: 3,
                         hint: "استخدم علامة a مع خاصية href"
-                    },
-                    {
+            },
+            {
                         question: "اكتب قائمة غير مرتبة باستخدام &lt;ul&gt; و &lt;li&gt;",
                         solution: "<ul><li>عنصر أول</li><li>عنصر ثاني</li></ul>",
                         stars: 3,
@@ -65,8 +65,8 @@ class ProgrammingGame {
                         solution: "<button>اضغط هنا</button>",
                         stars: 2,
                         hint: "استخدم علامة button للزر"
-                    },
-                    {
+            },
+            {
                         question: "اكتب قسم باستخدام علامة &lt;div&gt; مع محتوى",
                         solution: "<div>هذا قسم منفصل</div>",
                         stars: 2,
@@ -107,8 +107,8 @@ class ProgrammingGame {
                         solution: "text-align: center;",
                         stars: 2,
                         hint: "استخدم خاصية text-align"
-                    },
-                    {
+            },
+            {
                         question: "اكتب CSS لإضافة padding للعنصر",
                         solution: "padding: 10px;",
                         stars: 2,
@@ -131,8 +131,8 @@ class ProgrammingGame {
                         solution: "button:hover { background-color: green; }",
                         stars: 4,
                         hint: "استخدم :hover مع خاصية background-color"
-                    },
-                    {
+            },
+            {
                         question: "اكتب CSS لجعل العنصر دائري",
                         solution: "border-radius: 50%;",
                         stars: 3,
@@ -149,14 +149,14 @@ class ProgrammingGame {
                         solution: "let name = 'أحمد';",
                         stars: 2,
                         hint: "استخدم let لإنشاء متغير"
-                    },
-                    {
+            },
+            {
                         question: "اكتب دالة بسيطة باسم 'greet' ترجع 'مرحباً'",
                         solution: "function greet() { return 'مرحباً'; }",
                         stars: 3,
                         hint: "استخدم function لإنشاء دالة"
-                    },
-                    {
+            },
+            {
                         question: "اكتب شرط if للتحقق من أن العمر أكبر من 18",
                         solution: "if (age > 18) { console.log('بالغ'); }",
                         stars: 3,
@@ -203,7 +203,7 @@ class ProgrammingGame {
                         solution: "let promise = new Promise((resolve, reject) => { resolve('نجح!'); });",
                         stars: 5,
                         hint: "استخدم new Promise مع resolve"
-                    }
+            }
                 ]
             }
         };
@@ -275,71 +275,100 @@ class ProgrammingGame {
     }
 
     setupEventListeners() {
-        // أزرار اختيار اللغة
+        // أزرار اختيار اللغة - تحسين للهواتف المحمولة
         document.querySelectorAll('.language-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const language = card.dataset.language;
-                this.selectLanguage(language);
+            let touchStartY = 0;
+            let touchMoved = false;
+
+            // معالج النقر العادي
+            card.addEventListener('click', (e) => {
+                // فقط على الديسكتوب
+                if (window.ontouchstart === undefined) {
+                    const language = card.dataset.language;
+                    this.selectLanguage(language);
+                }
             });
-            
-            // تحسين التفاعل مع اللمس
+
+            // معالج اللمس للموبايل
             card.addEventListener('touchstart', (e) => {
-                e.preventDefault();
+                touchStartY = e.touches[0].clientY;
+                touchMoved = false;
                 card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.1s ease';
             });
-            
+            card.addEventListener('touchmove', (e) => {
+                const touchY = e.touches[0].clientY;
+                if (Math.abs(touchY - touchStartY) > 10) {
+                    touchMoved = true;
+                    card.style.transform = '';
+                }
+            });
             card.addEventListener('touchend', (e) => {
-                e.preventDefault();
                 card.style.transform = '';
+                card.style.transition = '';
+                if (!touchMoved) {
+                    const language = card.dataset.language;
+                    this.selectLanguage(language);
+                }
             });
         });
 
         // زر العودة للقائمة الرئيسية
         const backToMenuButton = document.getElementById('back-to-menu');
         if (backToMenuButton) {
-            backToMenuButton.addEventListener('click', () => this.showMainMenu());
+            backToMenuButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showMainMenu();
+            });
             
             // تحسين التفاعل مع اللمس
-            backToMenuButton.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                backToMenuButton.style.transform = 'scale(0.95)';
-            });
-            
-            backToMenuButton.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                backToMenuButton.style.transform = '';
-            });
+            this.addTouchSupport(backToMenuButton);
         }
 
         // أزرار اللعبة
         const checkButton = document.getElementById('check-button');
         if (checkButton) {
-            checkButton.addEventListener('click', () => this.checkSolution());
+            checkButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.checkSolution();
+            });
             this.addTouchSupport(checkButton);
         }
 
         const showSolutionButton = document.getElementById('show-solution');
         if (showSolutionButton) {
-            showSolutionButton.addEventListener('click', () => this.showSolution());
+            showSolutionButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showSolution();
+            });
             this.addTouchSupport(showSolutionButton);
         }
 
         const backButton = document.getElementById('back-button');
         if (backButton) {
-            backButton.addEventListener('click', () => this.goBack());
+            backButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.goBack();
+            });
             this.addTouchSupport(backButton);
         }
 
         const nextButton = document.getElementById('next-button');
         if (nextButton) {
-            nextButton.addEventListener('click', () => this.nextLevel());
+            nextButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.nextLevel();
+            });
             this.addTouchSupport(nextButton);
         }
 
         // زر مسح الكود
         const clearCodeButton = document.getElementById('clear-code');
         if (clearCodeButton) {
-            clearCodeButton.addEventListener('click', () => this.clearCode());
+            clearCodeButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.clearCode();
+            });
             this.addTouchSupport(clearCodeButton);
         }
 
@@ -355,10 +384,21 @@ class ProgrammingGame {
                     userCode.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 300);
             });
+            
+            // تحسين التفاعل مع اللمس على منطقة الكود
+            userCode.addEventListener('touchstart', (e) => {
+                e.stopPropagation();
+            });
         }
         
         // منع التكبير على الهواتف
         this.preventZoom();
+        
+        // إضافة معالج للتحقق من أن الصفحة محملة بشكل صحيح
+        window.addEventListener('load', () => {
+            console.log('تم تحميل الصفحة بنجاح');
+            this.updateProgressDisplay();
+        });
     }
 
     addTouchSupport(element) {
@@ -564,7 +604,7 @@ class ProgrammingGame {
             );
             this.userProgress[this.currentLanguage].totalStars += currentLevelData.stars;
             this.saveProgress();
-            
+
             // إظهار زر المستوى التالي
             if (this.currentLevel < this.gameData[this.currentLanguage].levels.length) {
                 document.getElementById('next-button').style.display = 'inline-block';
