@@ -277,39 +277,65 @@ class ProgrammingGame {
     setupEventListeners() {
         // أزرار اختيار اللغة - تحسين للهواتف المحمولة
         document.querySelectorAll('.language-card').forEach(card => {
-            let touchStartY = 0;
-            let touchMoved = false;
-
-            // معالج النقر العادي
+            // إضافة معالج النقر الأساسي
             card.addEventListener('click', (e) => {
-                // فقط على الديسكتوب
-                if (window.ontouchstart === undefined) {
-                    const language = card.dataset.language;
-                    this.selectLanguage(language);
-                }
+                e.preventDefault();
+                e.stopPropagation();
+                const language = card.dataset.language;
+                this.selectLanguage(language);
             });
-
-            // معالج اللمس للموبايل
+            
+            // تحسين التفاعل مع اللمس للهواتف المحمولة
+            let touchStartTime = 0;
+            let touchStartY = 0;
+            
             card.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                touchStartTime = Date.now();
                 touchStartY = e.touches[0].clientY;
-                touchMoved = false;
                 card.style.transform = 'scale(0.98)';
                 card.style.transition = 'transform 0.1s ease';
             });
+            
             card.addEventListener('touchmove', (e) => {
+                e.preventDefault();
                 const touchY = e.touches[0].clientY;
-                if (Math.abs(touchY - touchStartY) > 10) {
-                    touchMoved = true;
+                const deltaY = Math.abs(touchY - touchStartY);
+                
+                // إذا كان المستخدم يمرر بدلاً من النقر، أزل التأثير
+                if (deltaY > 10) {
                     card.style.transform = '';
                 }
             });
+            
             card.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                const touchEndTime = Date.now();
+                const touchDuration = touchEndTime - touchStartTime;
+                
                 card.style.transform = '';
                 card.style.transition = '';
-                if (!touchMoved) {
+                
+                // إذا كان النقر قصيراً (أقل من 300ms)، اعتبره نقراً صحيحاً
+                if (touchDuration < 300) {
                     const language = card.dataset.language;
                     this.selectLanguage(language);
                 }
+            });
+            
+            // منع النقر على العناصر الداخلية من إيقاف النقر على البطاقة
+            card.querySelectorAll('*').forEach(element => {
+                element.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+                
+                element.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                });
+                
+                element.addEventListener('touchend', (e) => {
+                    e.stopPropagation();
+                });
             });
         });
 
