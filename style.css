@@ -407,3 +407,190 @@ body {
     50% { transform: rotate(-10deg) scale(1.1); }
     75% { transform: rotate(5deg) scale(1.05); }
 } 
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        margin: 5px;
+    }
+    
+    .character-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .character-card {
+        padding: 15px;
+        margin: 0;
+    }
+    
+    .character-card img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .character-card h3 {
+        font-size: 18px;
+        margin: 10px 0 5px 0;
+    }
+    
+    .character-card p {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+    
+    .chat-container {
+        height: 60vh;
+        margin: 10px 0;
+    }
+    
+    .chat-messages {
+        padding: 10px;
+    }
+    
+    .message {
+        padding: 8px 12px;
+        margin: 5px 0;
+        font-size: 14px;
+        max-width: 85%;
+    }
+    
+    .chat-input-container {
+        padding: 10px;
+    }
+    
+    .chat-input {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .send-btn {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+    
+    .modal h2 {
+        font-size: 20px;
+    }
+    
+    .modal p {
+        font-size: 16px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .header p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+        margin: 2px;
+    }
+    
+    .character-card {
+        padding: 12px;
+    }
+    
+    .character-card img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .character-card h3 {
+        font-size: 16px;
+    }
+    
+    .character-card p {
+        font-size: 13px;
+    }
+    
+    .chat-container {
+        height: 55vh;
+    }
+    
+    .message {
+        font-size: 13px;
+        max-width: 90%;
+    }
+    
+    .chat-input {
+        font-size: 14px;
+    }
+    
+    .send-btn {
+        font-size: 14px;
+    }
+    
+    .modal-content {
+        padding: 15px;
+    }
+    
+    .modal h2 {
+        font-size: 18px;
+    }
+    
+    .modal p {
+        font-size: 14px;
+    }
+    
+    .header h1 {
+        font-size: 20px;
+    }
+    
+    .header p {
+        font-size: 14px;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .chat-container {
+        height: 45vh;
+    }
+    
+    .character-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .character-card:hover {
+        transform: none;
+    }
+    
+    .send-btn:hover {
+        background-color: #007bff;
+    }
+    
+    .modal-btn:hover {
+        background-color: #6c757d;
+    }
+    
+    .modal-btn.primary:hover {
+        background-color: #28a745;
+    }
+} 
