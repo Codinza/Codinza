@@ -3,220 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codinza</title>
+    <title>مصري اصيل - AI مصري مضحك</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1><span class="codinza-title">Codinza</span></h1>
-            <p>اختر اللغة التي تريد تعلمها</p>
+        <!-- Header -->
+        <header class="header">
+            <h1>🎭 شات واحد مصري اصيل </h1>
+            <p>تحدث مع شخصيات مصرية يعم بق ومتقرفناش !</p>
         </header>
 
-        <div class="game-menu">
-            <div class="language-card" onclick="startGame('html')">
-                <div class="card-icon">🌐</div>
-                <h3>HTML</h3>
-                <p>تعلم بناء هيكل المواقع</p>
-                <div class="difficulty">سهل</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('css')">
-                <div class="card-icon">🎨</div>
-                <h3>CSS</h3>
-                <p>تعلم تنسيق وتصميم المواقع</p>
-                <div class="difficulty">متوسط</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('javascript')">
-                <div class="card-icon">⚡</div>
-                <h3>JavaScript</h3>
-                <p>تعلم البرمجة التفاعلية</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('python')">
-                <div class="card-icon">🐍</div>
-                <h3>Python</h3>
-                <p>تعلم البرمجة الأساسية</p>
-                <div class="difficulty">سهل</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('php')">
-                <div class="card-icon">🐘</div>
-                <h3>PHP</h3>
-                <p>تعلم تطوير الويب الخلفي</p>
-                <div class="difficulty">متوسط</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('sql')">
-                <div class="card-icon">📊</div>
-                <h3>SQL</h3>
-                <p>تعلم قواعد البيانات</p>
-                <div class="difficulty">متوسط</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('react')">
-                <div class="card-icon">⚛️</div>
-                <h3>React</h3>
-                <p>تعلم إطار العمل الحديث</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('cpp')">
-                <div class="card-icon">⚙️</div>
-                <h3>C++</h3>
-                <p>تعلم البرمجة المتقدمة</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('java')">
-                <div class="card-icon">☕</div>
-                <h3>Java</h3>
-                <p>تعلم البرمجة الموجهة للكائنات</p>
-                <div class="difficulty">متوسط</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('typescript')">
-                <div class="card-icon">📘</div>
-                <h3>TypeScript</h3>
-                <p>تعلم JavaScript المحسن</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('nodejs')">
-                <div class="card-icon">🟢</div>
-                <h3>Node.js</h3>
-                <p>تعلم تطوير الخادم</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('git')">
-                <div class="card-icon">📝</div>
-                <h3>Git</h3>
-                <p>تعلم إدارة الإصدارات</p>
-                <div class="difficulty">متوسط</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('dart')">
-                <div class="card-icon">🎯</div>
-                <h3>Dart</h3>
-                <p>تعلم لغة Flutter</p>
-                <div class="difficulty">متوسط</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('flutter')">
-                <div class="card-icon">🦋</div>
-                <h3>Flutter</h3>
-                <p>تعلم تطوير التطبيقات</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('vue')">
-                <div class="card-icon">💚</div>
-                <h3>Vue.js</h3>
-                <p>تعلم إطار العمل التفاعلي</p>
-                <div class="difficulty">متوسط</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('angular')">
-                <div class="card-icon">🔴</div>
-                <h3>Angular</h3>
-                <p>تعلم إطار العمل الشامل</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('laravel')">
-                <div class="card-icon">🔥</div>
-                <h3>Laravel</h3>
-                <p>تعلم إطار العمل PHP</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="language-card" onclick="startGame('django')">
-                <div class="card-icon">🟢</div>
-                <h3>Django</h3>
-                <p>تعلم إطار العمل Python</p>
-                <div class="difficulty">متقدم</div>
-            </div>
-
-            <div class="achievements-card" onclick="showAchievements()">
-                <div class="card-icon">🏆</div>
-                <h3>الإنجازات</h3>
-                <p>شاهد شاراتك وإنجازاتك</p>
-                <div class="achievements-count" id="achievementsCount">0/50</div>
-            </div>
-        </div>
-
-        <div class="game-area" id="gameArea" style="display: none;">
-            <div class="game-header">
-                <h2 id="gameTitle">تعلم HTML</h2>
-                <div class="score-board">
-                    <span>النقاط: <span id="score">0</span></span>
-                    <span>المستوى: <span id="level">1</span></span>
-                </div>
-            </div>
-
-            <div class="question-container">
-                <div class="question" id="question">
-                    اختر الإجابة الصحيحة
+        <!-- Character Selection -->
+        <div class="character-selection" id="characterSelection">
+            <h2>اختار شخصيه يسطا:</h2>
+            <div class="characters-grid">
+                <!-- Free Characters -->
+                <div class="character-card free" data-character="mama">
+                    <div class="character-avatar">👩‍🦱</div>
+                    <h3>أم مصريه</h3>
+                    <p>هتقولك الم هدومي واروح عند امي</p>
+                    <span class="badge free-badge">مجاني</span>
                 </div>
                 
-                <div class="options" id="options">
-                    <!-- الخيارات ستظهر هنا -->
+                <div class="character-card free" data-character="baba">
+                    <div class="character-avatar">👨‍🦱</div>
+                    <h3>أب مصري</h3>
+                    <p>متهزرش معاه علشان هيجلدك</p>
+                    <span class="badge free-badge">مجاني</span>
+                </div>
+
+                <!-- Premium Characters -->
+                <div class="character-card premium" data-character="khala">
+                    <div class="character-avatar">👩‍🦰</div>
+                    <h3>خالة</h3>
+                    <p>تحب النميمة والضحك</p>
+                    <span class="badge premium-badge">خمسه جنيه يسطا ولو معكش خليها علينا</span>
+                </div>
+
+                <div class="character-card premium" data-character="3amo">
+                    <div class="character-avatar">👨‍🦳</div>
+                    <h3>عمي</h3>
+                    <p>صاحب النكتة والمواقف</p>
+                    <span class="badge premium-badge">5 جنيه</span>
+                </div>
+
+                <div class="character-card premium" data-character="3amto">
+                    <div class="character-avatar">👵</div>
+                    <h3>عمتي</h3>
+                    <p>حكمة العائلة وطعمها</p>
+                    <span class="badge premium-badge">5 جنيه</span>
+                </div>
+
+                <div class="character-card premium" data-character="7abibi">
+                    <div class="character-avatar">👨‍💼</div>
+                    <h3>حبيبي</h3>
+                    <p>صاحب الكلام الحلو</p>
+                    <span class="badge premium-badge">5 جنيه</span>
                 </div>
             </div>
+        </div>
 
-            <div class="game-controls">
-                <button class="btn btn-secondary" onclick="backToMenu()">العودة للقائمة</button>
-                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" style="display: none;">السؤال التالي</button>
+        <!-- Chat Interface -->
+        <div class="chat-container" id="chatContainer" style="display: none;">
+            <div class="chat-header">
+                <button class="back-btn" onclick="showCharacterSelection()">← رجوع</button>
+                <div class="current-character">
+                    <span id="currentCharacterAvatar">👩‍🦱</span>
+                    <span id="currentCharacterName">أم مصري</span>
+                </div>
             </div>
-
-            <div class="progress-bar">
-                <div class="progress" id="progress"></div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here -->
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" id="messageInput" placeholder="اكتب رسالتك هنا..." maxlength="500">
+                <button id="sendButton" onclick="sendMessage()">إرسال</button>
             </div>
         </div>
 
-        <div class="result-screen" id="resultScreen" style="display: none;">
-            <h2>🎉 انتهت اللعبة!</h2>
-            <div class="final-score">
-                <h3>النقاط النهائية: <span id="finalScore">0</span></h3>
-                <div class="stars" id="stars"></div>
-            </div>
-            <div class="result-buttons">
-                <button class="btn btn-primary" onclick="playAgain()">العب مرة أخرى</button>
-                <button class="btn btn-secondary" onclick="backToMenu()">العودة للقائمة</button>
-            </div>
-        </div>
-
-        <div class="achievements-screen" id="achievementsScreen" style="display: none;">
-            <h2>🏆 الإنجازات والشارات</h2>
-            <div class="achievements-grid" id="achievementsGrid">
-                <!-- الإنجازات ستظهر هنا -->
-            </div>
-            <div class="achievements-controls">
-                <button class="btn btn-secondary" onclick="backToMenu()">العودة للقائمة</button>
+        <!-- Payment Modal -->
+        <div class="modal" id="paymentModal">
+            <div class="modal-content">
+                <span class="close" onclick="closePaymentModal()">&times;</span>
+                <h2>شراء الشخصية</h2>
+                <div class="payment-details">
+                    <div class="character-info">
+                        <span id="paymentCharacterAvatar">👩‍🦰</span>
+                        <span id="paymentCharacterName">خالة</span>
+                    </div>
+                    <p>سعر الشخصية: <strong>5 جنيه مصري</strong></p>
+                </div>
+                <div class="payment-methods">
+                    <button class="payment-btn vodafone">فودافون كاش</button>
+                    <button class="payment-btn orange">أورانج موني</button>
+                    <button class="payment-btn etisalat">اتصالات كاش</button>
+                    <button class="payment-btn we">وي</button>
+                </div>
+                <button class="cancel-btn" onclick="closePaymentModal()">إلغاء</button>
             </div>
         </div>
     </div>
-
-    <footer class="social-footer">
-        <div class="social-icons">
-            <a href="https://www.facebook.com/share/15dFQrfgop/" class="social-icon facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/ana.aimen.7?igsh=MXB2bG5xaDAwNGx6aQ==" class="social-icon instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/201104378091" class="social-icon whatsapp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-        <div class="copyright">
-            <p>جميع الحقوق محفوظة &copy; 2024 - Ayman</p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
